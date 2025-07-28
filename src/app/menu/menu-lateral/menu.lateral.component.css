@@ -1,0 +1,30 @@
+.sidenav {
+  width: 220px;
+  background: #f5f5f5;
+  border-right: 1px solid #ddd;
+  height: 100vh;
+  padding-top: 32px;
+}
+.sidenav li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.sidenav a {
+  color: #333;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+.sidenav a:hover {
+  background: #e3e3e3;
+}
+.material-icons {
+  margin-right: 12px;
+  font-size: 22px;
+  color: #2196f3;
+}

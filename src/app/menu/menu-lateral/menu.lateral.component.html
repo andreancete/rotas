@@ -1,0 +1,8 @@
+<ul class="sidenav sidenav-fixed">
+  <li routerLinkActive="active" *ngFor="let item of menuItems">
+    <a [routerLink]="item.link">
+      <i class="material-icons">{{ item.icon }}</i>
+      <span>{{ item.label }}</span>
+    </a>
+  </li>
+</ul>

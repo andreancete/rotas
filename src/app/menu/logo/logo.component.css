@@ -1,0 +1,9 @@
+.app-logo {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+.app-logo img {
+  height: 40px;
+  width: auto;
+}

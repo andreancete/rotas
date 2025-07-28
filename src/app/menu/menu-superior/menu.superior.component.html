@@ -1,0 +1,9 @@
+<nav>
+  <div class="nav-wrapper blue">
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li routerLinkActive="active" *ngFor="let item of menuItems">
+        <a [routerLink]="item.link">{{ item.label }}</a>
+      </li>
+    </ul>
+  </div>
+</nav>
