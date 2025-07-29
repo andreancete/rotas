@@ -6,6 +6,7 @@ import {
   Router,
 } from '@angular/router';
 import { AuthService } from '../login/auth.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +17,7 @@ export class AuthGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): boolean {
+  ): Observable<boolean> | boolean {
     if (this.authService.usuarioEstaLogado()) {
       return true;
     } else {

@@ -106,7 +106,7 @@ p {
 
 .top-panel {
   height: 64px;
-  background: #2196f3;
+  background: #00897b; /* teal darken-2 */
   flex-direction: column;
   color: white;
   display: flex;

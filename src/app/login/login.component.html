@@ -1,42 +1,45 @@
-<p>Digite o email e senha para fazer o login!</p>
-<div class="container">
-  <h1>Login</h1>
-  <div class="row">
-    <div class="col s12">
-      <div class="row">
-        <div class="input-field col s12">
-          <input
-            [(ngModel)]="usuario.email"
-            id="email"
-            type="email"
-            name="email"
-            class="validate"
-            required
-          />
-          <label for="email">Email</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <input
-            [(ngModel)]="usuario.senha"
-            id="password"
-            type="password"
-            name="senha"
-            class="validate"
-            required
-          />
-          <label for="password">Password</label>
-        </div>
-      </div>
-      <button
-        (click)="usuarioLogin()"
-        class="btn waves-effect waves-light"
-        type="button"
-      >
-        Login
-        <i class="material-icons right">send</i>
-      </button>
+<div class="login-bg">
+  <div class="login-card z-depth-3">
+    <div class="login-header center-align">
+      <i class="material-icons large teal-text text-darken-2">lock</i>
+      <h4 class="teal-text text-darken-2 login-margin-top">Bem-vindo!</h4>
+      <p class="grey-text">Digite seu e-mail e senha para acessar o sistema</p>
     </div>
+    <form autocomplete="off">
+      <div class="input-field">
+        <i class="material-icons prefix">email</i>
+        <input
+          [(ngModel)]="usuario.email"
+          id="email"
+          type="email"
+          name="email"
+          class="validate"
+          required
+        />
+        <label for="email">E-mail</label>
+      </div>
+      <div class="input-field">
+        <i class="material-icons prefix">vpn_key</i>
+        <input
+          [(ngModel)]="usuario.senha"
+          id="password"
+          type="password"
+          name="senha"
+          class="validate"
+          required
+        />
+        <label for="password">Senha</label>
+      </div>
+      <div class="center-align login-margin-top-2rem">
+        <button
+          (click)="usuarioLogin()"
+          class="btn-large waves-effect waves-light teal darken-2"
+          type="button"
+        >
+          Entrar
+          <i class="material-icons right">login</i>
+        </button>
+      </div>
+    </form>
   </div>
 </div>

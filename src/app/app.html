@@ -10,7 +10,8 @@
 <!-- Template principal -->
 <div class="main-layout">
   <!-- Coluna lateral -->
-  <div class="sidebar-layout">
+
+  <div class="sidebar-layout" *ngIf="mostraMenu">
     <!-- Logo alinhado ao topo -->
     <div class="sidebar-logo-panel">
       <app-logo></app-logo>

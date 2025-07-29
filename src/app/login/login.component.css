@@ -1,0 +1,37 @@
+/* Fundo da tela de login */
+.login-bg {
+  min-height: 100vh;
+  background: #f5f6fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Cartão de login centralizado */
+.login-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+  padding: 3rem 2.5rem 2.5rem 2.5rem;
+  max-width: 450px;
+  width: 100%;
+  margin: 2rem;
+}
+
+.login-header {
+  margin-bottom: 2.5rem;
+}
+
+.input-field {
+  margin-bottom: 2rem;
+}
+
+.center-align {
+  margin-top: 2.5rem !important;
+}
+
+@media (max-width: 600px) {
+  .login-card {
+    padding: 2rem 1rem 1.5rem 1rem;
+  }
+}

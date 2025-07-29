@@ -4,7 +4,6 @@ import { RouterOutlet } from '@angular/router';
 import { MenuComponent } from './menu/menu-superior/menu.superior.component';
 import { MenuLateralComponent } from './menu/menu-lateral/menu.lateral.component';
 import { LogoComponent } from './menu/logo/logo.component';
-import { Subscribable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 
 @Component({
