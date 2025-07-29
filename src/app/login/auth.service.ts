@@ -1,4 +1,4 @@
-import { Usuario } from './usuario.interface';
+import Usuario from './usuarioLogado.interface';
 import { EventEmitter, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -20,10 +20,7 @@ export class AuthService {
     if (!_usuario.email || !_usuario.senha) {
       return false; // Invalid credentials
     }
-    if (
-      _usuario.email !== 'andreancete@gmail.com' ||
-      _usuario.senha !== '123456'
-    ) {
+    if (_usuario.email !== 'a' || _usuario.senha !== '123') {
       this.usuarioLogado = false;
       throw new Error('Invalid credentials'); // Invalid credentials
     }
@@ -41,7 +38,10 @@ export class AuthService {
   usuarioEstaLogado(): boolean {
     return this.usuarioLogado;
   }
+
   logout(): void {
     this.usuarioLogado = false;
+    this.mostrarMenuEmit.emit(false); //evento para esconder o menu
+    this.router.navigate(['/home']); // Redirecionar para a página inicial após logout
   }
 }

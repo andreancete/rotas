@@ -1,0 +1,23 @@
+.logout-container {
+  padding: 2rem;
+  border-radius: 8px;
+  margin-top: 2rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.logout-buttons {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.logout-home-btn {
+  border: 2px solid #00897b;
+}
+
+.logout-home-btn:hover {
+  background-color: #00897b;
+  color: white;
+}

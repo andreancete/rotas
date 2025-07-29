@@ -1,0 +1,23 @@
+<div class="usuarios-lista-container">
+  <h2>Lista de Usuários</h2>
+  <div class="usuarios-grid">
+    <div
+      class="usuario-card"
+      *ngFor="let usuario of usuarios"
+      (click)="selecionarUsuario(usuario.id)"
+      [class.selecionado]="usuarioSelecionado?.id === usuario.id"
+      tabindex="0"
+      style="cursor: pointer"
+    >
+      <img
+        [src]="usuario.fotourl"
+        alt="Foto de {{ usuario.nome }}"
+        class="usuario-foto"
+      />
+      <div class="usuario-info">
+        <h3>{{ usuario.nome }}</h3>
+        <p><strong>Email:</strong> {{ usuario.email }}</p>
+      </div>
+    </div>
+  </div>
+</div>

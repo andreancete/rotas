@@ -1,0 +1,55 @@
+.usuarios-lista-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1rem;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.usuarios-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.usuario-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+  padding: 1.5rem 1rem;
+  display: flex;
+  align-items: center;
+  transition: box-shadow 0.2s;
+}
+
+.usuario-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.13);
+}
+
+.usuario-foto {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 1.2rem;
+  border: 2px solid #1976d2;
+}
+
+.usuario-info h3 {
+  margin: 0 0 0.3rem 0;
+  font-size: 1.2rem;
+  color: #1976d2;
+}
+
+.usuario-info p {
+  margin: 0;
+  color: #444;
+  font-size: 0.97rem;
+}
+
+.usuario-card.selecionado {
+  border: 2.5px solid #00897b;
+  box-shadow: 0 6px 20px rgba(0, 137, 123, 0.13);
+  background: #e0f2f1;
+  cursor: pointer;
+  transition: border 0.2s, box-shadow 0.2s, background 0.2s;
+}

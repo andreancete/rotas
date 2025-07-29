@@ -1,4 +1,4 @@
-export class Usuario {
+export default class usuarioLogado {
   email: string;
   senha: string;
 
