@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../usuario.interface';
 import { UsuariosService } from '../usuarios.service';
 import { CommonModule } from '@angular/common';
+import { CanComponentDeactivate } from '../../guard/canComponentDeactivate.Interface';
 
 @Component({
   selector: 'app-usuarios.component',
@@ -9,7 +10,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './usuarios.component.html',
   styleUrl: './usuarios.component.css',
 })
-export class UsuariosComponent {
+export class UsuariosComponent implements OnInit, CanComponentDeactivate {
   usuarios: Usuario[] = [];
   usuarioSelecionado?: Usuario;
 
@@ -40,5 +41,11 @@ export class UsuariosComponent {
   removerUsuario(id: number) {
     this.usuariosService.removerUsuario(id);
     this.carregarUsuarios();
+  }
+
+  podeDesativar(): boolean {
+    // Implementar lógica para verificar se o componente pode ser desativado
+    // Por exemplo, verificar se há alterações não salvas
+    return true;
   }
 }
