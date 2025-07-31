@@ -1,0 +1,17 @@
+.pagina-nao-encontrada {
+  padding: 4rem 1rem;
+}
+
+.pagina-nao-encontrada .material-icons {
+  font-size: 5rem;
+  color: #00897b;
+}
+
+.pagina-nao-encontrada h2 {
+  color: #00897b;
+  margin-top: 1rem;
+}
+
+.pagina-nao-encontrada .btn-large {
+  margin-top: 2rem;
+}
