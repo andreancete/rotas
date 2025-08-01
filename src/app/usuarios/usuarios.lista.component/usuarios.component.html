@@ -1,23 +1,44 @@
-<div class="usuarios-lista-container">
-  <h2>Lista de Usuários</h2>
-  <div class="usuarios-grid">
-    <div
-      class="usuario-card"
-      *ngFor="let usuario of usuarios"
-      (click)="selecionarUsuario(usuario.id)"
-      [class.selecionado]="usuarioSelecionado?.id === usuario.id"
-      tabindex="0"
-      (keyup.enter)="selecionarUsuario(usuario.id)"
-    >
-      <img
-        [src]="usuario.fotourl"
-        alt="Foto de {{ usuario.nome }}"
-        class="usuario-foto"
-      />
-      <div class="usuario-info">
-        <h3>{{ usuario.nome }}</h3>
-        <p><strong>Email:</strong> {{ usuario.email }}</p>
-      </div>
+<h2>Lista de Usuários</h2>
+<div class="usuarios-grid" *ngIf="usuarios && usuarios.length > 0">
+  <div
+    class="usuario-card"
+    *ngFor="let usuario of usuarios"
+    (click)="selecionarUsuario(usuario.id)"
+    [class.selecionado]="usuarioSelecionado?.id === usuario.id"
+    tabindex="0"
+    (keyup.enter)="selecionarUsuario(usuario.id)"
+  >
+    <img
+      [src]="usuario.fotourl"
+      alt="Foto de {{ usuario.nome }}"
+      class="usuario-foto"
+    />
+    <div class="usuario-info">
+      <h3>{{ usuario.nome }}</h3>
+      <p><strong>Email:</strong> {{ usuario.email }}</p>
+    </div>
+    <div class="usuario-actions" style="align-self: flex-start">
+      <i
+        class="bi bi-eye text-primary me-2"
+        role="button"
+        tabindex="0"
+        (click)="visualizarUsuario(usuario.id)"
+        title="Visualizar"
+        aria-label="Visualizar"
+      ></i>
     </div>
   </div>
+</div>
+<div
+  *ngIf="usuarios && usuarios.length === 0"
+  class="usuarios-vazio center-align"
+  style="margin-top: 3rem"
+>
+  <img
+    src="https://cdn-icons-png.flaticon.com/512/4076/4076549.png"
+    alt="Sem usuários"
+    style="width: 120px; opacity: 0.7; margin-bottom: 1.5rem"
+  />
+  <h4>Nenhum usuário encontrado</h4>
+  <p>A lista de usuários está vazia.</p>
 </div>

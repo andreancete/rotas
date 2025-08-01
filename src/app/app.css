@@ -99,7 +99,7 @@ p {
 }
 
 .content-area {
-  flex: 1;
+  flex: 1 auto;
   display: flex;
   flex-direction: column;
 }

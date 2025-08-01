@@ -38,6 +38,10 @@ export class UsuariosService {
   removerUsuario(id: number): boolean {
     const idx = this.usuarios.findIndex((u) => u.id === id);
     if (idx === -1) return false;
+    const confirmacao = window.confirm(
+      'Tem certeza que deseja remover este usuário?'
+    );
+    if (!confirmacao) return false;
     this.usuarios.splice(idx, 1);
     return true;
   }
