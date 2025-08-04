@@ -18,8 +18,8 @@ export class UsuariosGuard implements CanActivateChild {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> | boolean {
-    console.log(route);
-    console.log(state);
+    // console.log(route);
+    // console.log(state);
     if (this.authService.usuarioEstaLogado()) {
       return true;
     } else {

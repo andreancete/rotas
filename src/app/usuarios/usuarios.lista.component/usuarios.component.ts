@@ -4,19 +4,23 @@ import { UsuariosService } from '../usuarios.service';
 import { CommonModule } from '@angular/common';
 import { CanComponentDeactivate } from '../../guard/canComponentDeactivate.Interface';
 import { UsuarioFormTemplateComponent } from '../usuario.form-template.component/usuario.form-template.component';
-import { subscribeOn } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-usuarios.component',
-  imports: [CommonModule, UsuarioFormTemplateComponent],
+  imports: [CommonModule],
   templateUrl: './usuarios.component.html',
   styleUrl: './usuarios.component.css',
 })
 export class UsuariosComponent implements OnInit, CanComponentDeactivate {
+  [x: string]: any;
   usuarios: Usuario[] = [];
   usuarioSelecionado?: Usuario;
 
-  constructor(private usuariosService: UsuariosService) {}
+  constructor(
+    private usuariosService: UsuariosService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.carregarUsuarios();
@@ -32,6 +36,8 @@ export class UsuariosComponent implements OnInit, CanComponentDeactivate {
 
   visualizarUsuario(id: number) {
     this.usuarioSelecionado = this.usuariosService.getUsuarioById(id);
+    //redireciona para a rota de usuario/id
+    this.router.navigate(['/usuarios', id]);
   }
 
   // Handler for refresh event from UsuarioFormTemplateComponent

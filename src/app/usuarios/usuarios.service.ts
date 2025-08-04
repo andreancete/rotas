@@ -12,6 +12,25 @@ export class UsuariosService {
     return [...this.usuarios];
   }
 
+  // Método para retornar um usuário vazio
+  usuarioVazio(): Usuario {
+    return {
+      id: 0,
+      nome: '',
+      email: '',
+      senha: '',
+      fotourl: '',
+      endereco: {
+        cep: '',
+        rua: '',
+        numero: '',
+        bairro: '',
+        cidade: '',
+        uf: '',
+      },
+    };
+  }
+
   getUsuarioById(id: number): Usuario | undefined {
     return this.usuarios.find((u) => u.id === id);
   }

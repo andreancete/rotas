@@ -34,6 +34,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.ng-invalid:not(form) {
+  border: 2px solid red;
+}
+
 h1 {
   font-size: 3.125rem;
   color: var(--gray-900);

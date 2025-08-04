@@ -1,7 +1,7 @@
 <div class="container mt-4 mb-4">
   <form
     #usuarioForm="ngForm"
-    (ngSubmit)="onSubmit(usuarioForm)"
+    (ngSubmit)="adicionarUsuarioForm(usuarioForm)"
     autocomplete="off"
   >
     <div class="mb-3">
@@ -24,32 +24,116 @@
         [(ngModel)]="usuario.email"
         class="form-control"
         required
+        email="true"
       />
     </div>
-    <div class="mb-3">
-      <label for="senha" class="form-label">Senha</label>
-      <input
-        type="password"
-        id="senha"
-        name="senha"
-        [(ngModel)]="usuario.senha"
-        class="form-control"
-        required
-      />
-    </div>
-    <div class="mb-3">
-      <label for="fotourl" class="form-label">Foto (URL)</label>
-      <input
-        type="text"
-        id="fotourl"
-        name="fotourl"
-        [(ngModel)]="usuario.fotourl"
-        class="form-control"
-      />
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="senha" class="form-label">Senha</label>
+        <input
+          type="password"
+          id="senha"
+          name="senha"
+          [(ngModel)]="usuario.senha"
+          class="form-control"
+          required
+        />
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="fotourl" class="form-label">Foto (URL)</label>
+        <input
+          type="text"
+          id="fotourl"
+          name="fotourl"
+          [(ngModel)]="usuario.fotourl"
+          class="form-control"
+        />
+      </div>
     </div>
 
+    <fieldset class="mb-3">
+      <legend class="fs-6">Endereço</legend>
+      <div class="row">
+        <div class="col-md-2 mb-3">
+          <label for="cep" class="form-label">CEP</label>
+          <input
+            (blur)="consultarCep(usuario.endereco.cep)"
+            type="text"
+            id="cep"
+            name="cep"
+            [(ngModel)]="usuario.endereco.cep"
+            class="form-control"
+            required
+          />
+        </div>
+        <div class="col-md-8 mb-3">
+          <label for="rua" class="form-label">Rua</label>
+          <input
+            type="text"
+            id="rua"
+            name="rua"
+            [(ngModel)]="usuario.endereco.rua"
+            class="form-control"
+            required
+          />
+        </div>
+        <div class="col-md-2 mb-3">
+          <label for="numero" class="form-label">Número</label>
+          <input
+            type="text"
+            id="numero"
+            name="numero"
+            [(ngModel)]="usuario.endereco.numero"
+            class="form-control"
+            required
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-5 mb-3">
+          <label for="bairro" class="form-label">Bairro</label>
+          <input
+            type="text"
+            id="bairro"
+            name="bairro"
+            [(ngModel)]="usuario.endereco.bairro"
+            class="form-control"
+            required
+          />
+        </div>
+        <div class="col-md-5 mb-3">
+          <label for="cidade" class="form-label">Cidade</label>
+          <input
+            type="text"
+            id="cidade"
+            name="cidade"
+            [(ngModel)]="usuario.endereco.cidade"
+            class="form-control"
+            required
+          />
+        </div>
+        <div class="col-md-2 mb-3">
+          <label for="uf" class="form-label">UF</label>
+          <input
+            type="text"
+            id="uf"
+            name="uf"
+            [(ngModel)]="usuario.endereco.uf"
+            class="form-control"
+            required
+          />
+        </div>
+      </div>
+    </fieldset>
+
     <div class="d-flex gap-2 mt-4">
-      <button type="submit" class="btn btn-success">Salvar</button>
+      <button
+        type="submit"
+        [disabled]="!usuarioForm.valid"
+        class="btn btn-success"
+      >
+        Salvar
+      </button>
       <button
         type="button"
         class="btn btn-secondary"
