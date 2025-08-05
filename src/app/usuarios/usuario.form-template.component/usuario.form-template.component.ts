@@ -55,31 +55,10 @@ export class UsuarioFormTemplateComponent
     });
   }
 
-  consultarCep(cep: string) {
+  consultarCep(cep: string, form: any) {
     cep = cep.replace(/\D/g, '');
     this.http.get<any>(`https://viacep.com.br/ws/${cep}/json`).subscribe({
-      next: (data) => {
-        if (!data.erro) {
-          this.usuario.endereco = {
-            cep: data.cep || '',
-            rua: data.logradouro || '',
-            numero: '',
-            bairro: data.bairro || '',
-            cidade: data.localidade || '',
-            uf: data.uf || '',
-          };
-        } else {
-          this.usuario.endereco = {
-            cep: '',
-            rua: '',
-            numero: '',
-            bairro: '',
-            cidade: '',
-            uf: '',
-          };
-          console.warn('CEP não encontrado, preenchendo com valores vazios.');
-        }
-      },
+      next: (data) => this.populaCamposEndereco(data, form),
       error: (error) => {
         this.usuario.endereco = {
           cep: '',
@@ -92,6 +71,30 @@ export class UsuarioFormTemplateComponent
         console.error('Erro ao consultar o CEP:', error);
       },
     });
+  }
+
+  populaCamposEndereco(data: any, formulario: any) {
+    if (!data.erro) {
+      // formulario.forms.pathvalue = {
+      //   cep: data.cep || '',
+      //   rua: data.logradouro || '',
+      //   bairro: data.bairro || '',
+      //   cidade: data.localidade || '',
+      //   uf: data.uf || '',
+      // };
+      formulario.controls['cep'].setValue(data.cep || '');
+      formulario.controls['rua'].setValue(data.logradouro || '');
+      formulario.controls['bairro'].setValue(data.bairro || '');
+      formulario.controls['cidade'].setValue(data.localidade || '');
+      formulario.controls['uf'].setValue(data.uf || '');
+    } else {
+      formulario.controls['cep'].setValue(null);
+      formulario.controls['rua'].setValue(null);
+      formulario.controls['bairro'].setValue(null);
+      formulario.controls['cidade'].setValue(null);
+      formulario.controls['uf'].setValue(null);
+      console.warn('CEP não encontrado, preenchendo com valores vazios.');
+    }
   }
 
   adicionarUsuarioForm(usuarioForm: any) {
@@ -123,21 +126,7 @@ export class UsuarioFormTemplateComponent
     }
   }
   limparForm(form: any) {
-    this.usuario = {
-      id: 0,
-      nome: '',
-      email: '',
-      senha: '',
-      fotourl: '',
-      endereco: {
-        cep: '',
-        rua: '',
-        numero: '',
-        bairro: '',
-        cidade: '',
-        uf: '',
-      },
-    }; // Limpar o usuário atual
+    // this.usuario = null; // Limpar o usuário atual
     form.reset(); // Limpar o formulário
   }
 

@@ -40,6 +40,12 @@ export class UsuariosComponent implements OnInit, CanComponentDeactivate {
     this.router.navigate(['/usuarios', id]);
   }
 
+  visualizarUsuarioReativo(id: number) {
+    this.usuarioSelecionado = this.usuariosService.getUsuarioById(id);
+    //redireciona para a rota de usuario/id
+    this.router.navigate(['/usuarios/reativo', id]);
+  }
+
   // Handler for refresh event from UsuarioFormTemplateComponent
   onUsuarioRefresh() {
     this.carregarUsuarios();
