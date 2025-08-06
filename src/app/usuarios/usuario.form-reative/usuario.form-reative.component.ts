@@ -8,6 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
+import { EstadosService } from '../../shared/combo/estados.service';
 
 @Component({
   selector: 'app-usuario.form-reative.component',
@@ -20,12 +21,16 @@ export class UsuarioFormReativeComponent implements OnInit {
   formulario: FormGroup;
   visualizando: boolean = true;
   usuarioId?: number;
+  usuarioIdParametro?: number;
+  estados: any[] = [];
 
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private usuariosService: UsuariosService,
-    private http: HttpClient
+    private http: HttpClient,
+    // private EstadosService: EstadosService,
+    private estadosService: EstadosService
   ) {
     this.formulario = this.fb.group({
       nome: ['', Validators.required],
@@ -33,43 +38,86 @@ export class UsuarioFormReativeComponent implements OnInit {
       senha: ['', Validators.required],
       fotourl: [''],
       endereco: this.fb.group({
-        cep: [''],
-        rua: [''],
-        numero: [''],
-        bairro: [''],
-        cidade: [''],
-        uf: [''],
+        cep: ['', Validators.required],
+        rua: ['', Validators.required],
+        numero: ['', Validators.required],
+        bairro: ['', Validators.required],
+        cidade: ['', Validators.required],
+        uf: ['', Validators.required],
       }),
     });
   }
 
   ngOnInit() {
+    this.estados = this.getEstados();
     this.route.paramMap.subscribe((params) => {
-      const id = Number(params.get('id'));
-      if (id) {
-        const usuario = this.usuariosService.getUsuarioById(id);
-        if (usuario) {
-          this.formulario.patchValue(usuario);
-          this.visualizando = true;
-          this.usuarioId = usuario.id;
-          this.formulario.disable();
-        } else {
-          this.formulario.reset();
-          this.visualizando = false;
-        }
+      this.carregarUsuario(+params.get('id')!);
+      this.usuarioIdParametro = +params.get('id')!;
+
+      console.log(
+        'OnInit Params id: ',
+        this.usuarioIdParametro !== null
+          ? +this.usuarioIdParametro
+          : 'Parâmetro não encontrado'
+      );
+    });
+  }
+
+  carregarUsuario(id: number) {
+    // id = Number(params.get('id'));
+    if (id) {
+      const usuario = this.usuariosService.getUsuarioById(id);
+      if (usuario) {
+        console.log('Carregando usuário:', usuario);
+        this.formulario.patchValue(usuario);
+        this.visualizando = true;
+        this.usuarioId = usuario.id;
+        this.formulario.disable();
       } else {
         this.formulario.reset();
         this.visualizando = false;
       }
-    });
+    } else {
+      console.log('Reset formulario de usuario', id);
+      this.formulario.reset();
+      this.visualizando = false;
+    }
   }
 
   habilitarEdicao() {
+    this.carregarUsuario(this.usuarioIdParametro!);
     this.formulario.enable();
     this.visualizando = false;
   }
 
+  ValidaCamposForm(formulario: FormGroup) {
+    Object.keys(this.formulario.controls).forEach((campo) => {
+      const controle = this.formulario.get(campo);
+      if (controle && controle.invalid) {
+        controle.markAsTouched();
+        if (controle instanceof FormGroup) this.ValidaCamposForm(controle);
+      }
+    });
+  }
+
+  getEstados() {
+    return this.estadosService.getEstados();
+  }
+
   salvar() {
+    //se o formulario for inválido mostra os campos inválidos
+    if (this.formulario.invalid) {
+      this.ValidaCamposForm(this.formulario);
+
+      // Object.keys(this.formulario.controls).forEach((campo) => {
+      //   const controle = this.formulario.get(campo);
+      //   if (controle) {
+      //     controle.markAsTouched();
+      //   }
+      // });
+      return;
+    }
+
     if (this.formulario.valid) {
       if (this.usuarioId) {
         this.usuariosService.atualizarUsuario(
@@ -80,7 +128,7 @@ export class UsuarioFormReativeComponent implements OnInit {
         this.usuariosService.adicionarUsuario(this.formulario.value);
       }
       this.formulario.reset();
-      this.visualizando = false;
+      this.visualizando = true;
       this.usuarioId = undefined;
     }
   }
@@ -139,5 +187,11 @@ export class UsuarioFormReativeComponent implements OnInit {
         console.error('Erro ao consultar o CEP:', error);
       },
     });
+  }
+
+  cancelarEdicao() {
+    this.formulario.reset();
+    this.visualizando = true;
+    this.carregarUsuario(this.usuarioIdParametro!);
   }
 }

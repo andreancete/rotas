@@ -3,17 +3,17 @@
     <div class="d-flex gap-2 mt-4">
       <button
         type="button"
-        class="btn btn-primary"
+        class="btn-large waves-effect waves-light teal darken-2"
         (click)="novoUsuario()"
-        *ngIf="visualizando"
+        [disabled]="!visualizando"
       >
         Inserir Novo Usuário
       </button>
       <button
         type="button"
-        class="btn btn-warning"
+        class="btn-large waves-effect waves-light teal darken-2"
         (click)="habilitarEdicao()"
-        *ngIf="visualizando"
+        [disabled]="!visualizando"
       >
         Alterar Usuário
       </button>
@@ -110,13 +110,17 @@
         </div>
         <div class="col-md-2 mb-3">
           <label for="uf" class="form-label">UF</label>
-          <input
-            type="text"
+          <select
             id="uf"
             class="form-control"
             formControlName="uf"
-            [readonly]="visualizando"
-          />
+            [disabled]="visualizando"
+          >
+            <option value="">Selecione</option>
+            <option *ngFor="let estado of estados" [value]="estado.sigla">
+              {{ estado.nome }} ({{ estado.sigla }})
+            </option>
+          </select>
         </div>
       </div>
     </fieldset>
@@ -124,16 +128,17 @@
     <div class="d-flex gap-2 mt-4">
       <button
         type="submit"
-        class="btn btn-success"
-        [disabled]="formulario.invalid || visualizando"
+        class="btn-large teal darken-2 waves-effect waves-light"
+        [disabled]="visualizando"
         *ngIf="!visualizando"
       >
         Salvar
       </button>
       <button
         type="reset"
-        class="btn btn-warning"
-        [disabled]="formulario.invalid || visualizando"
+        class="btn-large waves-effect waves-light"
+        (click)="cancelarEdicao()"
+        [disabled]="visualizando"
         *ngIf="!visualizando"
       >
         Cancelar
