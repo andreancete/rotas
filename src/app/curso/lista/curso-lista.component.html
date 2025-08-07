@@ -1,0 +1,66 @@
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-2">
+    <h2 class="mb-0">Cursos</h2>
+    <button class="btn btn-success" (click)="novoCurso()">
+      <i class="bi bi-plus-lg"></i> Novo Curso
+    </button>
+  </div>
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Descrição</th>
+        <th>Duração</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngIf="cursos$ | async as cursoss; else carregando">
+        <tr *ngIf="cursoss?.length === 0">
+          <td colspan="5" class="text-center">Nenhum curso encontrado.</td>
+        </tr>
+        <tr *ngFor="let curso of cursoss">
+          <td>{{ curso.id }}</td>
+          <td>{{ curso.nome }}</td>
+          <td>{{ curso.descricao }}</td>
+          <td>{{ curso.duracao }}</td>
+          <td>
+            <button
+              class="btn btn-sm btn-primary me-1"
+              (click)="visualizarCurso(curso.id)"
+              title="Visualizar"
+            >
+              <i class="bi bi-eye"></i>
+            </button>
+            <button
+              class="btn btn-sm btn-warning me-1"
+              (click)="selecionarCurso(curso.id)"
+              title="Editar"
+            >
+              <i class="bi bi-pencil"></i>
+            </button>
+            <button
+              class="btn btn-sm btn-danger"
+              (click)="deletarCurso(curso.id)"
+              title="Excluir"
+            >
+              <i class="bi bi-trash"></i>
+            </button>
+          </td>
+        </tr>
+      </ng-container>
+      <ng-template #carregando>
+        <tr>
+          <td colspan="5" class="text-center">
+            <div
+              class="spinner-border spinner-border-sm text-primary me-2"
+              role="status"
+            ></div>
+            Carregando cursos...
+          </td>
+        </tr>
+      </ng-template>
+    </tbody>
+  </table>
+</div>

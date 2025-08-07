@@ -2,7 +2,7 @@ import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao
 import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { SobreComponent } from './sobre/sobre.component';
-import { ContatoComponent } from './contato/contato.component';
+import { CursoListaComponent } from './curso/lista/curso-lista.component';
 import { UsuariosComponent } from './usuarios/usuarios.lista.component/usuarios.component';
 import { ConfiguracoesComponent } from './configuracoes/configuracoes.component';
 import { LoginComponent } from './login/login-component/login.component';
@@ -23,8 +23,8 @@ export const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'contato',
-    component: ContatoComponent,
+    path: 'curso',
+    component: CursoListaComponent,
     canActivate: [AuthGuard],
   },
   {

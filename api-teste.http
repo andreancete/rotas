@@ -1,0 +1,30 @@
+http://localhost:3000
+
+### Listar cursos
+http://localhost:3000/cursos
+
+### Buscar curso por ID
+http://localhost:3000/cursos/1
+
+### Criar novo curso
+POST http://localhost:3000/cursos   
+
+Content-Type: application/json
+
+{
+  "title": "Novo Curso",
+  "description": "Descrição do novo curso"
+}
+### Atualizar curso
+PUT http://localhost:3000/cursos/1  
+
+Content-Type: application/json
+
+{
+  "title": "Curso Atualizado",
+  "description": "Descrição do curso atualizado"
+}
+
+### Deletar curso
+DELETE http://localhost:3000/cursos/1
+

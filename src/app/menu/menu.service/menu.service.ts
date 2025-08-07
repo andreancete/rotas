@@ -11,7 +11,7 @@ export class MenuService {
   getSuperiorMenu(): MenuItem[] {
     return [
       { label: 'Home', link: '/home' },
-      { label: 'Sobre', link: '/sobre' },
+      { label: 'Curso', link: '/curso' },
       { label: 'Contato', link: '/contato' },
     ];
   }
@@ -21,7 +21,7 @@ export class MenuService {
       { label: 'Dashboard', icon: 'dashboard', link: '/dashboard' },
       { label: 'Usuários', icon: 'person', link: '/usuarios' },
       { label: 'Configurações', icon: 'settings', link: '/configuracoes' },
-      { label: 'Sobre', icon: 'info', link: '/sobre' },
+      { label: 'Curso', icon: 'info', link: '/curso' },
       { label: 'Sair', icon: 'exit_to_app', link: '/sair' },
     ];
   }
