@@ -35,6 +35,10 @@ export class CursoService {
     return this.http.post<Curso>(`${this.cursosEndpoint}`, curso);
   }
 
+  deletarCurso(id: number) {
+    return this.http.delete(`${this.cursosEndpoint}/${id}`);
+  }
+
   atualizarCurso(
     id: number,
     curso: Partial<Omit<(typeof this.cursos)[0], 'id'>>

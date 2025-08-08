@@ -1,7 +1,11 @@
 <div class="container mt-4">
   <div class="d-flex justify-content-between align-items-center mb-2">
     <h2 class="mb-0">Cursos</h2>
-    <button class="btn btn-success" (click)="novoCurso()">
+    <button
+      class="btn btn-success"
+      [routerLink]="['/cursos/novo']"
+      routerLinkActive="router-link-active"
+    >
       <i class="bi bi-plus-lg"></i> Novo Curso
     </button>
   </div>
@@ -16,34 +20,40 @@
       </tr>
     </thead>
     <tbody>
-      <ng-container *ngIf="cursos$ | async as cursoss; else carregando">
-        <tr *ngIf="cursoss?.length === 0">
+      <!-- <ng-container *ngIf="cursos$ | async as cursoss; else carregando"> -->
+      <ng-container *ngIf="cursos; else carregando">
+        <!-- <tr *ngIf="cursos?.length === 0"> -->
+        <tr *ngIf="cursos?.length === 0">
           <td colspan="5" class="text-center">Nenhum curso encontrado.</td>
         </tr>
-        <tr *ngFor="let curso of cursoss">
+        <!-- <tr *ngFor="let curso of cursoss"> -->
+        <tr *ngFor="let curso of cursos">
           <td>{{ curso.id }}</td>
           <td>{{ curso.nome }}</td>
           <td>{{ curso.descricao }}</td>
           <td>{{ curso.duracao }}</td>
           <td>
             <button
-              class="btn btn-sm btn-primary me-1"
+              class="btn btn-link btn-sm p-0 me-1"
               (click)="visualizarCurso(curso.id)"
               title="Visualizar"
+              style="box-shadow: none; outline: none"
             >
               <i class="bi bi-eye"></i>
             </button>
             <button
-              class="btn btn-sm btn-warning me-1"
-              (click)="selecionarCurso(curso.id)"
+              class="btn btn-link btn-sm p-0 me-1"
+              (click)="editarCurso(curso.id)"
               title="Editar"
+              style="box-shadow: none; outline: none"
             >
               <i class="bi bi-pencil"></i>
             </button>
             <button
-              class="btn btn-sm btn-danger"
+              class="btn btn-link btn-sm p-0"
               (click)="deletarCurso(curso.id)"
               title="Excluir"
+              style="box-shadow: none; outline: none"
             >
               <i class="bi bi-trash"></i>
             </button>
